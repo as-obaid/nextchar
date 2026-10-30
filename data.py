@@ -10,10 +10,12 @@ DATA_PATH = Path(__file__).parent / "data" / "input.txt"
 
 
 def load_text():
+    """The corpus ships in data/input.txt; it is downloaded only if that file is missing."""
     if not DATA_PATH.exists():
         DATA_PATH.parent.mkdir(exist_ok=True)
         print(f"Downloading Tiny Shakespeare to {DATA_PATH}")
-        urllib.request.urlretrieve(URL, DATA_PATH)
+        with urllib.request.urlopen(URL) as response:
+            DATA_PATH.write_bytes(response.read())  # written only once the download is complete
     return DATA_PATH.read_text(encoding="utf-8")
 
 

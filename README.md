@@ -85,7 +85,8 @@ Attention is written out by hand in `CausalSelfAttention`.
 Everything that is not the architecture is held fixed:
 
 - **Data:** [Tiny Shakespeare](https://github.com/karpathy/char-rnn) (1.1M characters, 65
-  symbols), split 90/10 into contiguous blocks before windowing, so no window crosses the split.
+  symbols), included as `data/input.txt` and re-downloaded only if missing. It is split 90/10
+  into contiguous blocks before windowing, so no window crosses the split.
 - **Budget:** the same 3,000 batches of 64 × 128 characters, in the same order, for every model.
 - **Optimiser:** AdamW, 100-step warmup, cosine decay, gradient clipping at 1.0. The LSTM and
   transformer share a peak learning rate of 2e-3. The bigram uses 1e-2, because at 2e-3 it stopped
@@ -153,7 +154,8 @@ ranking flips.
 
 | Path | Contents |
 | --- | --- |
-| `data.py` | Download, vocabulary, contiguous split, batching, fixed evaluation windows |
+| `data/input.txt` | Tiny Shakespeare, 1.1 MB, public domain |
+| `data.py` | Vocabulary, contiguous split, batching, fixed evaluation windows |
 | `models.py` | `BigramLM`, `LSTMLM`, `TransformerLM`, and the shared sampler |
 | `train.py` | Shared training budget; writes `checkpoints/` and `results/metrics.json` |
 | `report.py` | Results table, figures, and samples |
