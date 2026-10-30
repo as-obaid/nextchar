@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>NextChar</title>
+<meta name="description" content="Bigram, LSTM, and transformer character models trained on Tiny Shakespeare, predicting the next character live in your browser.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Crect width=%2216%22 height=%2216%22 rx=%223%22 fill=%22%2315171c%22/%3E%3Crect x=%229%22 y=%223%22 width=%224%22 height=%2210%22 fill=%22%231baf7a%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <p class="mark" aria-label="NextChar">nextchar<span class="caret" aria-hidden="true"></span></p>
+    <p class="lede">Three character-level language models trained on Tiny Shakespeare. Type, and each one predicts the character that comes next.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="panel context" aria-labelledby="context-label">
+    <div class="row-head">
+      <label id="context-label" for="context">Context</label>
+      <div class="presets" role="group" aria-label="Example contexts"></div>
+    </div>
+    <textarea id="context" rows="3" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+    <p class="note" id="context-note" aria-live="polite"></p>
+  </section>
+
+  <section class="predict" aria-labelledby="predict-h">
+    <div class="section-head">
+      <h2 id="predict-h">Next character</h2>
+      <p>Each model's eight most likely next characters. Click one to add it to the context.</p>
+    </div>
+    <div class="trio" id="predictions"></div>
+  </section>
+
+  <section class="sample" aria-labelledby="sample-h">
+    <div class="section-head">
+      <h2 id="sample-h">Sample a continuation</h2>
+      <p>Each model writes from the context one character at a time, drawing from its own predictions with the same seed.</p>
+    </div>
+    <form class="controls" id="controls">
+      <label class="field">
+        <span>Temperature <output id="temperature-out" for="temperature">0.80</output></span>
+        <input id="temperature" type="range" min="0.1" max="1.5" step="0.05" value="0.8">
+      </label>
+      <label class="field">
+        <span>Characters</span>
+        <input id="length" type="number" min="20" max="1000" step="10" value="300" inputmode="numeric">
+      </label>
+      <label class="field">
+        <span>Seed</span>
+        <input id="seed" type="number" min="0" max="999999" step="1" value="1337" inputmode="numeric">
+      </label>
+      <button id="generate" type="submit">Generate</button>
+    </form>
+    <div class="trio" id="samples"></div>
+  </section>
+
+  <section class="attention" aria-labelledby="attention-h">
+    <div class="section-head">
+      <h2 id="attention-h">What the transformer looks at</h2>
+      <p>Pick a character. Shading shows how much attention the transformer paid to each earlier character when it predicted that one.</p>
+    </div>
+    <div class="att-controls">
+      <div class="seg" role="radiogroup" aria-label="Text" id="att-source"></div>
+      <div class="seg" role="radiogroup" aria-label="Layer" id="att-layer"></div>
+      <div class="seg" role="radiogroup" aria-label="Head" id="att-head"></div>
+    </div>
+    <div class="att-body">
+      <div class="att-text" id="att-text" tabindex="0" aria-describedby="att-caption"></div>
+      <aside class="att-side">
+        <p class="att-caption" id="att-caption" aria-live="polite"></p>
+        <ol class="att-top" id="att-top"></ol>
+      </aside>
+    </div>
+  </section>
+
+  <section class="scores" aria-labelledby="scores-h">
+    <div class="section-head">
+      <h2 id="scores-h">How they scored</h2>
+      <p>Cross-entropy on held-out text, in nats per character; lower is better. Guessing uniformly over all <span id="vocab-size">65</span> characters scores <span id="uniform-loss">4.17</span> (dashed line). Each model trained for <span id="steps">3,000</span> steps on the same batches.</p>
+    </div>
+    <div class="score-table" id="scores" role="table" aria-label="Validation loss, size, and training time"></div>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <p>The weights come from the PyTorch checkpoints and run in your browser. The JavaScript forward passes match PyTorch to within 1e-5.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
