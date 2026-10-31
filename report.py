@@ -61,21 +61,22 @@ def loss_by_position(model, x, y, batch_size=256):
 
 def write_table(metrics, names, count_bigram_loss):
     rows = [
-        "| Model | Parameters | Steps | Train loss | Val loss | Val perplexity "
+        "| Model | Parameters | Steps | Best step | Train loss | Val loss | Val perplexity "
         "| Training time | Device |",
-        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |",
     ]
     for name in names:
         m = metrics[name]
         rows.append(
-            f"| {LABELS[name]} | {m['params']:,} | {m['steps']:,} | {m['train_loss']:.4f} | "
-            f"{m['val_loss']:.4f} | {math.exp(m['val_loss']):.2f} | {m['train_time_s']:.1f} s | "
-            f"{m['device']} |"
+            f"| {LABELS[name]} | {m['params']:,} | {m['steps']:,} | {m['best_step']:,} | "
+            f"{m['train_loss']:.4f} | {m['val_loss']:.4f} | {math.exp(m['val_loss']):.2f} | "
+            f"{m['train_time_s']:.1f} s | {m['device']} |"
         )
     note = (
         "\nLoss is mean cross-entropy in nats per character, measured with dropout off on the "
-        "same fixed windows for every model. Perplexity is exp(loss). Training time excludes "
-        "evaluation.\n\n"
+        "same fixed windows for every model. Perplexity is exp(loss). The checkpoint kept is "
+        "the evaluation with the lowest validation loss (best step). Training time is for all "
+        "steps and excludes evaluation.\n\n"
         f"Reference: a bigram built by counting character pairs in the training set "
         f"(add-0.1 smoothing) has validation loss {count_bigram_loss:.4f}.\n"
     )

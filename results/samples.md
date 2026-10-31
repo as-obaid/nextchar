@@ -8,15 +8,14 @@ Prompt: `'ROMEO:\n'`
 
 ```text
 ROMEO:
-Cars an thedeneane in rolound e we anonthoute thilou wist icthis ter; bea yonsenimes tse ay g pourancey mou ber s LI'sl thad s tofren gre d, IAg thorve annonint tisan fof t trerane; she
+Cars an thedeneane in rolound e we anonthoute thilou wist ic wis ter; bea yonsenimes tse ay g pourancey mou ber s LI'sl thad s tofren gre d, IAg thorve annonifit dean fof t trerane; she
 
-He t ss tode ish rintho bin mer thimbly ariste bous sellose bl'se ph POLURI at, the me:
+He t ss tode ish rintho bin mer thimbly ariste bous sellosen l'se ph POLURI at, the me:
 MI.
 Shay a au at we hotemancen.
 Y:
-HAnouro as to tong,
-BReavethiretoull hor e s d hathithous gh healo g bestoou.
-HAUCKENI tiswo artheren ivethethewheceawhe
+HAnouro as to tong, theavethiritoull hor e s d hathithous gh healo g bestoou.
+HAUCKENI tiswo artheren ivethethewhechawhe
 I clend ce if bl me ar belithout mat n,
 The:
 IUSe bld, t kecheg thant
@@ -26,15 +25,14 @@ Prompt: `'KING RICHARD III:\n'`
 
 ```text
 KING RICHARD III:
-Cars an thedeneane in rolound e we anonthoute thilou wist icthis ter; bea yonsenimes tse ay g pourancey mou ber s LI'sl thad s tofren gre d, IAg thorve annonint tisan fof t trerane; she
+Cars an thedeneane in rolound e we anonthoute thilou wist ic wis ter; bea yonsenimes tse ay g pourancey mou ber s LI'sl thad s tofren gre d, IAg thorve annonifit dean fof t trerane; she
 
-He t ss tode ish rintho bin mer thimbly ariste bous sellose bl'se ph POLURI at, the me:
+He t ss tode ish rintho bin mer thimbly ariste bous sellosen l'se ph POLURI at, the me:
 MI.
 Shay a au at we hotemancen.
 Y:
-HAnouro as to tong,
-BReavethiretoull hor e s d hathithous gh healo g bestoou.
-HAUCKENI tiswo artheren ivethethewheceawhe
+HAnouro as to tong, theavethiritoull hor e s d hathithous gh healo g bestoou.
+HAUCKENI tiswo artheren ivethethewhechawhe
 I clend ce if bl me ar belithout mat n,
 The:
 IUSe bld, t kecheg thant
@@ -43,15 +41,14 @@ IUSe bld, t kecheg thant
 Prompt: `'Thou art'`
 
 ```text
-Thou arthers an thedeneane in rolound e we anonthoute thilou wist icthis ter; bea yonsenimes tse ay g pourancey mou ber s LI'sl thad s tofren gre d, IAg thorve annonint tisan fof t trerane; she
+Thou arthers an thedeneane in rolound e we anonthoute thilou wist ic wis ter; bea yonsenimes tse ay g pourancey mou ber s LI'sl thad s tofren gre d, IAg thorve annonifit dean fof t trerane; she
 
-He t ss tode ish rintho bin mer thimbly ariste bous sellose bl'se ph POLURI at, the me:
+He t ss tode ish rintho bin mer thimbly ariste bous sellosen l'se ph POLURI at, the me:
 MI.
 Shay a au at we hotemancen.
 Y:
-HAnouro as to tong,
-BReavethiretoull hor e s d hathithous gh healo g bestoou.
-HAUCKENI tiswo artheren ivethethewheceawhe
+HAnouro as to tong, theavethiritoull hor e s d hathithous gh healo g bestoou.
+HAUCKENI tiswo artheren ivethethewhechawhe
 I clend ce if bl me ar belithout mat n,
 The:
 IUSe bld, t kecheg thant
@@ -63,62 +60,68 @@ Prompt: `'ROMEO:\n'`
 
 ```text
 ROMEO:
-Can to your enemy and roling gears and
-spoken the wearish in the tender a fongeniment self;
-That it could not have company Bohemoin?
+Carlish that we citizen, in a way
+To one of the blood in births, then, back, she's so.
+
+JULIET:
+That my mouth has your ancient love?
 
 KING HENRY VI:
-And whom for you should trutchers his best.
-What being reath ship me, this is a husting,
-As longer than passion of the king give.
+Ah, what a thousand fearthers will the sea
+With I so hardly of singer thing here
+Of incesterge, in this passion of their love;
+And have I us to the tempt of the wear;
+What to the devil with this joy of Gloucester.
 
-Clown:
-I am well them very moodeard, and to them,
-Break the grace: how is your done of me
-And lose the more shill shall we speak of you,
-To externard in clood could be mean about,
-And woe not be term of my dakest give hi
+BUCKINGHAM:
+My lord, I have shown the wars of this thing,
+That where clouds and the measure of your mother
+To him that was a man give hi
 ```
 
 Prompt: `'KING RICHARD III:\n'`
 
 ```text
 KING RICHARD III:
-Carulling deed, Edward's sun, when thou do not
-So tear their wisster; and you height to your hand,
-Even to see a good land, as the way's offer
-And methinks a fitter from here to the perjures,
-With I so harm thoses he hath made a husbing,
-As longer than passion of the king give.
+Carlish that we citizen, in a way
+To one of the blood in births by their hains
+To see all high; that my mouths, some slanderous.
 
-Clown:
-I am well them very moodeard, and to them,
-Break the grace: how is your done of me
-And lose the more shill shall we speak of you,
-To externard in clood could be mean about,
-And woe not be term of my dakest give hi
+HASTINGS:
+Even thou hast painted banishment,
+I am well to the sword of the father's head;
+Therefore he is elferly sently but thy treason,
+Which with a liege is how in them vengeance
+To for an opinion, that thought joy of eyes
+And fit out of heaven leave me. Harly God, sweet
+England: but they are well accomply the blood,
+And like a wrong he bears the sun that dugs
+Hath
 ```
 
 Prompt: `'Thou art'`
 
 ```text
-Thou art proman that weary in roling gear
-The captage that ear thou this termal for nothing could have
-The England for a gods lands' soul grace.
+Thou art promorved fears in thine own ears and
+sends to break it. Out of the banishment,
+meants, and his since he did have collared that from the delivery
+of his nobility. So, then they say if they have look it.
 
-RATCLIFF:
-Sir, who is the comfort, to take the poison.
-Where's therefore be here this in a husbing.
+CAMILLO:
+There is right.
 
-KING RICHARD III:
-O, Roman, the means for lie. But he will go not
-Your weary, and to the devil with prison:
-To be sudden fathour advised soldier,
-The hild of the disparther is the news?
+COMINIUS:
+Whose blood is Pompey,
+I must be wor.
 
-CORIOLANUS:
-No, if by me, brief the treatune
-To him that will know good no
+Clown:
+I am well to me put in weary, and to them,
+they stand to joy of else; he will not dispatch thee.
+
+First Murderer:
+Pray you; ye believe thee, he are some courtesy
+If you know your eyes
+To hear the wrong achieved hi
 ```
 
 ## Transformer
@@ -127,68 +130,64 @@ Prompt: `'ROMEO:\n'`
 
 ```text
 ROMEO:
-Carl an the enemy honour's nate and bone:
-And this parts bid with this base.
+Carleaful deed, Edward, look, when thou art so?
+Thou art bid me strength to nothing courtesy;
+The art your father of glass, as therefore you have
+power your instruct and go to be myself
+With pleasure of heavy owns heed to my heart,
+And every most blood passion of faults,
+With flatter taught with them venutorous that
+Wanton one, the with prisoner of expedity.
 
-POLIXENES:
-Ay, and it, my more shall come to Bucking the news,
-If them very not fit is father, to take suffection.
-What being reason his me, this in a husbingelo?
-
-MONTAGUE:
-Come you poor, the me: I fearly a a came to other,
-To the wears, I am this son the confest.
-
-CLARENCE:
-I had this sigh heart of me.
-
-First My lord:
-How my great is thou will away a clood course,
-The will be more to the crowner. Master'd made is and
+CAPULET:
+I have left me a princely time in the good bad;
+We have we do clook a life, for a virtue,
+They are a bloter. I say 'twas no fairl
 ```
 
 Prompt: `'KING RICHARD III:\n'`
 
 ```text
 KING RICHARD III:
-Can to the death your roling heaven
-And poor the body is bid with this base.
-
-POLIXENES:
-Ay, and say, you did hasty.
-
-BRUTUS:
-Now gone.
+Carleafest death in York of a way
+But nothing this partial's wind to be a foot
+To see after: and save your father of glass,
+As to give me deliver'd, if you are the cover
+At the and subjects appeal I so hardly mans
+The new or your honour afternoon.
 
 MENENIUS:
-This is paint to a virtue,
-But the perjoison some I so harms, or sing high my heart,
-And everely sently bring your hands, for give.
+May be my father.
 
-Clarence; CORIOLANUS:
-I will of all of and his son the confest.
+SICINIUS:
+I have so.
 
-CLARENCE:
-I had this sigh heart of me.
+FRIAR LAURENCE:
+What so tongue that thought joy of God's hand.
 
-First My lord:
-How my great is thou will away a clood course,
-The will be more to the crowner. Master'd made is and
+BUCKINGHAM:
+A gentleman while shall we speak our vaties,
+That are but bended our bloody brother's sorred
+From his people, had churchyard
 ```
 
 Prompt: `'Thou art'`
 
 ```text
-Thou art proman the enemy honour's nate and
-And poor the body is bid with this base.
+Thou art promont; ade passion relent to this
+of more part of a storm with this base. I'll see after:
+Speak, thy mouths, soon's angry soul gracious
+And grape in the mind to a virtue to be myself
+with pleasure of brief of singer this in a husband.
 
-POLIXENES:
-Ay, and it thy more shall come to Bucking the queen hath power and a fittles and
-What I am will to severs to being reasons
-sing high my heart, time the gone only bring your hand,
-If my world hand talk how in them very heart!
-Thou art his son the confest,
-And stress did this out make hand leave of my cleased.
-And his great into the face was a clood course,
-The will be more to the crowner. Master'd made is and
+KING RICHARD II:
+Pray you, my lord: I'll have pause you how make
+But how are of any pronounce away;
+And he had been dispersed us advised so begun.
+
+HENRY BOLINGBROKE:
+Repent interceed, coak my lord, and hope for a virtue!
+
+CAPULET:
+The Tranio sure's man give me
 ```

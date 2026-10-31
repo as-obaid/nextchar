@@ -81,14 +81,14 @@
   <section class="scores" aria-labelledby="scores-h">
     <div class="section-head">
       <h2 id="scores-h">How they scored</h2>
-      <p>Cross-entropy on held-out text, in nats per character; lower is better. Guessing uniformly over all <span id="vocab-size">65</span> characters scores <span id="uniform-loss">4.17</span> (dashed line). Each model trained for <span id="steps">3,000</span> steps on the same batches.</p>
+      <p>Cross-entropy on held-out text, in nats per character; lower is better. Guessing uniformly over all <span id="vocab-size">65</span> characters scores <span id="uniform-loss">4.17</span> (dashed line). Each model trained for <span id="steps">7,500</span> steps on the same batches.</p>
     </div>
     <div class="score-table" id="scores" role="table" aria-label="Validation loss, size, and training time"></div>
   </section>
 </main>
 
 <footer class="wrap foot">
-  <p>The weights come from the PyTorch checkpoints and run in your browser. The JavaScript forward passes match PyTorch to within 1e-5.</p>
+  <p>The weights come from the PyTorch checkpoints and run in your browser. The JavaScript forward passes match PyTorch to within 1e-4.</p>
 </footer>
 
 <script src="app.js"></script>

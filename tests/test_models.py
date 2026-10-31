@@ -3,14 +3,14 @@ import torch
 
 from data import CharVocab, eval_windows, get_batch
 from models import MODELS, generate
-from train import HPARAMS
+from train import CONFIG
 
 V, T = 11, 32  # small vocabulary; T fits inside the transformer's 128 positions
 
 
 def build(name):
     torch.manual_seed(0)
-    return MODELS[name](V, **HPARAMS[name]).eval()
+    return MODELS[name](V, **CONFIG[name]["hparams"]).eval()
 
 
 @pytest.mark.parametrize("name", MODELS)

@@ -27,23 +27,33 @@ RESULTS_DIR = ROOT / "results"
 # order, for the same number of target characters.
 BLOCK_SIZE = 128  # context length
 BATCH_SIZE = 64
-STEPS = 3000
-# One learning rate for the two neural models. The bigram table at 2e-3 ended
-# ~0.08 nats above the count-based bigram in 3,000 steps, so it gets a larger step.
-LR = {"bigram": 1e-2, "lstm": 2e-3, "transformer": 2e-3}
+STEPS = 7500
 WARMUP = 100
 GRAD_CLIP = 1.0
 EVAL_INTERVAL = 250
 EVAL_WINDOWS = 1000  # cap on evaluation windows per split
 SEED = 1337
 
-# The LSTM hidden size is 160 rather than 128 so its parameter count lands close
-# to the transformer's (~410k vs ~430k).
-HPARAMS = {
-    "bigram": {},
-    "lstm": dict(n_embd=128, hidden_size=160, n_layer=2, dropout=0.1),
+# Per-model optimizer settings and shape. The two neural models use the winners of
+# tune.py (results/tuning.md), which gave both the same search. The LSTM hidden size
+# is 160 rather than 128 so its parameter count lands close to the transformer's
+# (~410k vs ~399k). The bigram table is at its counting optimum already; at lr 2e-3
+# it ended ~0.08 nats short of it in 3,000 steps, so it keeps a larger step.
+CONFIG = {
+    "bigram": dict(lr=1e-2, betas=(0.9, 0.999), weight_decay=0.01, hparams={}),
+    "lstm": dict(
+        lr=8e-3,
+        betas=(0.9, 0.99),
+        weight_decay=0.1,
+        hparams=dict(n_embd=128, hidden_size=160, n_layer=2, dropout=0.1),
+    ),
     "transformer": dict(
-        n_embd=128, n_head=4, n_layer=2, ff_dim=512, block_size=BLOCK_SIZE, dropout=0.1
+        lr=8e-3,
+        betas=(0.9, 0.99),
+        weight_decay=0.1,
+        hparams=dict(
+            n_embd=88, n_head=4, n_layer=4, ff_dim=352, block_size=BLOCK_SIZE, dropout=0.1
+        ),
     ),
 }
 
@@ -94,18 +104,30 @@ def eval_sets(train_data, val_data):
     }
 
 
-def train_one(name, vocab_size, train_data, evals, steps, device, lr=None, save=True):
-    lr = LR[name] if lr is None else lr
-    torch.manual_seed(SEED)  # same initialisation and dropout seed for every model
-    model = MODELS[name](vocab_size, **HPARAMS[name]).to(device)
-    n_params = sum(p.numel() for p in model.parameters())
-    print(f"\n{name}: {n_params:,} parameters, lr {lr:g}")
+def make_optimizer(model, config):
+    """AdamW with weight decay on weight matrices only, not on biases or LayerNorm gains."""
+    params = list(model.parameters())
+    groups = [
+        {"params": [p for p in params if p.dim() >= 2], "weight_decay": config["weight_decay"]},
+        {"params": [p for p in params if p.dim() < 2], "weight_decay": 0.0},
+    ]
+    groups = [g for g in groups if g["params"]]
+    return torch.optim.AdamW(groups, lr=config["lr"], betas=config["betas"])
 
-    opt = torch.optim.AdamW(model.parameters(), lr=lr)
+
+def train_one(name, vocab_size, train_data, evals, steps, device, config=None, save=True):
+    config = CONFIG[name] if config is None else config
+    torch.manual_seed(SEED)  # same initialisation and dropout seed for every model
+    model = MODELS[name](vocab_size, **config["hparams"]).to(device)
+    n_params = sum(p.numel() for p in model.parameters())
+    print(f"\n{name}: {n_params:,} parameters, {config}")
+
+    opt = make_optimizer(model, config)
     sched = torch.optim.lr_scheduler.LambdaLR(opt, lambda s: lr_scale(s, steps))
     batches = torch.Generator().manual_seed(SEED)  # identical batch order for every model
 
     history = []
+    best = {"val_loss": math.inf}
     train_time = 0.0
 
     def log(step):
@@ -113,6 +135,10 @@ def train_one(name, vocab_size, train_data, evals, steps, device, lr=None, save=
         va = evaluate(model, *evals["val"], device)
         history.append({"step": step, "train_loss": tr, "val_loss": va, "time_s": train_time})
         print(f"  step {step:5d}  train {tr:.4f}  val {va:.4f}  {train_time:7.1f}s")
+        if va < best["val_loss"]:
+            # Early stopping: keep the weights from the lowest validation loss seen.
+            state = {k: v.detach().cpu().clone() for k, v in model.state_dict().items()}
+            best.update(step=step, train_loss=tr, val_loss=va, state_dict=state)
 
     log(0)
     t0 = time.perf_counter()
@@ -134,15 +160,18 @@ def train_one(name, vocab_size, train_data, evals, steps, device, lr=None, save=
             t0 = time.perf_counter()
 
     if save:
-        ckpt = {"hparams": HPARAMS[name], "state_dict": model.state_dict()}
+        ckpt = {"hparams": config["hparams"], "state_dict": best["state_dict"]}
         torch.save(ckpt, CKPT_DIR / f"{name}.pt")
     return {
         "params": n_params,
-        "train_loss": history[-1]["train_loss"],
-        "val_loss": history[-1]["val_loss"],
+        "train_loss": best["train_loss"],
+        "val_loss": best["val_loss"],
+        "best_step": best["step"],
         "train_time_s": train_time,
         "device": str(device),
-        "lr": lr,
+        "lr": config["lr"],
+        "betas": list(config["betas"]),
+        "weight_decay": config["weight_decay"],
         "steps": steps,
         "target_chars": steps * BATCH_SIZE * BLOCK_SIZE,
         "history": history,

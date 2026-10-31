@@ -1,0 +1,112 @@
+{
+  "transformer": {
+    "runs": [
+      {
+        "round": "start",
+        "setting": "original settings",
+        "params": 429889,
+        "val_loss": 1.6459286117115743,
+        "kept": false
+      },
+      {
+        "round": "learning rate",
+        "setting": "lr 4e-3",
+        "params": 429889,
+        "val_loss": 1.6061082351632014,
+        "kept": false
+      },
+      {
+        "round": "learning rate",
+        "setting": "lr 8e-3",
+        "params": 429889,
+        "val_loss": 1.5942329205273214,
+        "kept": true
+      },
+      {
+        "round": "optimizer",
+        "setting": "\u03b22 0.99, weight decay 0.1",
+        "params": 429889,
+        "val_loss": 1.5645829736159946,
+        "kept": true
+      },
+      {
+        "round": "shape",
+        "setting": "4 layers \u00d7 88",
+        "params": 399233,
+        "val_loss": 1.5312726867185258,
+        "kept": true
+      }
+    ],
+    "best": {
+      "lr": 0.008,
+      "betas": [
+        0.9,
+        0.99
+      ],
+      "weight_decay": 0.1,
+      "hparams": {
+        "n_embd": 88,
+        "n_head": 4,
+        "n_layer": 4,
+        "ff_dim": 352,
+        "block_size": 128,
+        "dropout": 0.1
+      }
+    },
+    "best_val_loss": 1.5312726867185258
+  },
+  "lstm": {
+    "runs": [
+      {
+        "round": "start",
+        "setting": "original settings",
+        "params": 410465,
+        "val_loss": 1.5515282123972984,
+        "kept": false
+      },
+      {
+        "round": "learning rate",
+        "setting": "lr 4e-3",
+        "params": 410465,
+        "val_loss": 1.5186265842512199,
+        "kept": false
+      },
+      {
+        "round": "learning rate",
+        "setting": "lr 8e-3",
+        "params": 410465,
+        "val_loss": 1.4895941715700345,
+        "kept": true
+      },
+      {
+        "round": "optimizer",
+        "setting": "\u03b22 0.99, weight decay 0.1",
+        "params": 410465,
+        "val_loss": 1.4850064791165865,
+        "kept": true
+      },
+      {
+        "round": "shape",
+        "setting": "3 layers \u00d7 128",
+        "params": 412993,
+        "val_loss": 1.5509660022266971,
+        "kept": false
+      }
+    ],
+    "best": {
+      "lr": 0.008,
+      "betas": [
+        0.9,
+        0.99
+      ],
+      "weight_decay": 0.1,
+      "hparams": {
+        "n_embd": 128,
+        "hidden_size": 160,
+        "n_layer": 2,
+        "dropout": 0.1
+      }
+    },
+    "best_val_loss": 1.4850064791165865
+  }
+}

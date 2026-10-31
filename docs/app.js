@@ -411,7 +411,7 @@
     const n = text.length;
     const caption = $("att-caption");
     caption.replaceChildren();
-    const where = `Layer ${layer}, ${head === "avg" ? "average of 4 heads" : `head ${head}`}.`;
+    const where = `Layer ${layer}, ${head === "avg" ? `average of ${heads.length} heads` : `head ${head}`}.`;
     if (selected < n) {
       const c = state.vocab[text[selected]];
       caption.append(
@@ -548,11 +548,14 @@
       state.att.source = v;
       setAttentionText();
     });
-    segmented($("att-layer"), "Layer", [[1, "1"], [2, "2"]], state.att.layer, (v) => {
+    const { n_layer: layers, n_head: heads } = state.manifest.models.transformer.hparams;
+    const numbered = (n) => Array.from({ length: n }, (_, i) => [i + 1, String(i + 1)]);
+    state.att.layer = layers;  // open on the last layer
+    segmented($("att-layer"), "Layer", numbered(layers), state.att.layer, (v) => {
       state.att.layer = v;
       renderAttention();
     });
-    segmented($("att-head"), "Head", [["avg", "All"], [1, "1"], [2, "2"], [3, "3"], [4, "4"]], state.att.head, (v) => {
+    segmented($("att-head"), "Head", [["avg", "All"], ...numbered(heads)], state.att.head, (v) => {
       state.att.head = v;
       renderAttention();
     });
