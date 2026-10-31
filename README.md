@@ -227,22 +227,30 @@ per-position loss and the samples explained what the totals could not. Next step
 several seeds per model for error bars, a separate test split (settings were chosen on
 validation), and a larger budget to find where the ranking flips.
 
+## AI use
+
+I used Claude Code as a coding assistant: it wrote the scripts, tests, and demo, drafted this
+README, ran the experiments, and helped with research. I chose the plan, the tuning approach, and
+the training budget, directed revisions, and approved each push. Every number here comes from the
+scripts' saved outputs. Details: [`ai_use_summary.md`](ai_use_summary.md).
+
 ## Repository
 
 ```text
 nextchar/
-├── data.py         vocabulary, contiguous split, batching, fixed evaluation windows
-├── models.py       BigramLM, LSTMLM, TransformerLM, and the shared sampler
-├── train.py        shared budget and per-model settings; trains all three models
-├── tune.py         the same tuning search for both neural models
-├── report.py       results table, figures, and samples
-├── export_web.py   exports the checkpoints to docs/assets/ for the demo
-├── data/           Tiny Shakespeare (input.txt, 1.1 MB, public domain)
-├── checkpoints/    trained weights for the three models
-├── results/        metrics, tables, figures, and samples
-├── docs/           the browser demo: plain-JS ports of the models, no build step
-├── scripts/        parity check between the JS models and PyTorch
-└── tests/          shape, causality, and data-pipeline checks
+├── data.py             vocabulary, contiguous split, batching, fixed evaluation windows
+├── models.py           BigramLM, LSTMLM, TransformerLM, and the shared sampler
+├── train.py            shared budget and per-model settings; trains all three models
+├── tune.py             the same tuning search for both neural models
+├── report.py           results table, figures, and samples
+├── export_web.py       exports the checkpoints to docs/assets/ for the demo
+├── ai_use_summary.md   how AI was used in this project
+├── data/               Tiny Shakespeare (input.txt, 1.1 MB, public domain)
+├── checkpoints/        trained weights for the three models
+├── results/            metrics, tables, figures, and samples
+├── docs/               the browser demo: plain-JS ports of the models, no build step
+├── scripts/            parity check between the JS models and PyTorch
+└── tests/              shape, causality, and data-pipeline checks
 ```
 
 ## References
